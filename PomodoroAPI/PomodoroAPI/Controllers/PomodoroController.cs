@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using PomodoroAPI.DAL;
 
 namespace PomodoroAPI.Controllers
 {
@@ -13,6 +14,9 @@ namespace PomodoroAPI.Controllers
     {
         private readonly ILogger<PomodoroController> _logger;
 
+        GetPomodoro gt = new GetPomodoro();
+        PostPomodoro pt = new PostPomodoro();
+
         public PomodoroController(ILogger<PomodoroController> logger)
         {
             _logger = logger;
@@ -21,25 +25,22 @@ namespace PomodoroAPI.Controllers
         [HttpGet]
         public IEnumerable<Pomodoro> Get()
         {
-            return Enumerable.Range(1, 5).Select(index => new Pomodoro
-            {
-                Date = DateTime.Now.AddDays(index),
-                Tag = "Bla",
-                Timer = 800
-            }).ToArray();
+            return gt.getPomodoro().ToList();
         }
 
         [Route("/pomodoro/{t}")]
         [HttpGet]
         public IEnumerable<Pomodoro> Get(string t)
         {
-            return Enumerable.Range(1, 5).Select(index => new Pomodoro
-            {
-                Date = DateTime.Now.AddDays(index),
-                Tag = t,
-                Timer = 800
-            }).ToArray();
+            return gt.getPomodoro().ToList();
         }
+        
+        /*[Route("/pomodoro")]
+        [HttpPost]
+        public void Post(Pomodoro p)
+        {
+            pt.postPomodoro("Travail", 8);
+        }*/
     }
 
 
