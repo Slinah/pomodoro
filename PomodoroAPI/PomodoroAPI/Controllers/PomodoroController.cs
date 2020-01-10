@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+/*using System.Net.Http;*/
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -25,22 +27,22 @@ namespace PomodoroAPI.Controllers
         [HttpGet]
         public IEnumerable<Pomodoro> Get()
         {
-            return gt.getPomodoro().ToList();
+            return gt.selectPomodoro().ToList();
         }
 
         [Route("/pomodoro/{t}")]
         [HttpGet]
         public IEnumerable<Pomodoro> Get(string t)
         {
-            return gt.getPomodoro().ToList();
+            return gt.selectPomodoroByTag(t).ToList();
         }
-        
-        /*[Route("/pomodoro")]
+
+        [Route("/pomodoro")]
         [HttpPost]
-        public void Post(Pomodoro p)
+        public void Post(string t, int ti)
         {
-            pt.postPomodoro("Travail", 8);
-        }*/
+            pt.insertPomodoro(t, ti);
+        }
     }
 
 

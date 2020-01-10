@@ -10,7 +10,12 @@ namespace PomodoroAPI.DAL
     {
 
         Database db = new Database();
-        public List<Pomodoro> getPomodoro()
+
+        /// <summary>
+        /// Pomodoro method to select pomodoros
+        /// </summary>
+        /// <returns>Pomodoro List</returns>
+        public List<Pomodoro> selectPomodoro()
         {
             db.connection.Open();
             List<Pomodoro> results = new List<Pomodoro>();
@@ -28,7 +33,12 @@ namespace PomodoroAPI.DAL
             return results;
         }
 
-        public List<Pomodoro> getPomodoroByTag(string tag)
+        /// <summary>
+        /// Pomodoro method to select pomodoros by tag
+        /// </summary>
+        /// <param name="tag">pomodoro tag</param>
+        /// <returns>Pomodoro List</returns>
+        public List<Pomodoro> selectPomodoroByTag(string tag)
         {
             db.connection.Open();
             List<Pomodoro> results = new List<Pomodoro>();
